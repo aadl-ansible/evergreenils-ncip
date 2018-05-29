@@ -1,0 +1,8 @@
+---
+- name: Clone NCIPServer git repository
+  git:
+    repo: 'git://git.evergreen-ils.org/NCIPServer.git'
+    dest: "/home/{{ evergreen_install_username }}/NCIPServer"
+    version: HEAD
+  become: yes
+  become_user: "{{ evergreen_install_username }}"

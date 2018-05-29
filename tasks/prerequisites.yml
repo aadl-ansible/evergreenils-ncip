@@ -19,6 +19,7 @@
     - libobject-tiny-perl
     - libxml-libxml-simple-perl
     - libplack-perl
+  become: true
 
 - name: See if Dancer needs patched
   lineinfile:
@@ -34,3 +35,4 @@
     dest: /usr/share/perl5/HTTP/Body/XForms.pm
     backup: yes
   when: not dancer_is_patched
+  become: true
