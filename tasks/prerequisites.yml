@@ -19,3 +19,18 @@
     - libobject-tiny-perl
     - libxml-libxml-simple-perl
     - libplack-perl
+
+- name: See if Dancer needs patched
+  lineinfile:
+    path: /usr/share/perl5/HTTP/Body/XForms.pm
+    line: "#$self->body($self->{buffer});"
+    state: present
+  check_mode: yes
+  register: dancer_is_patched
+
+- name: Patch Dancer per https://bugs.launchpad.net/ncipserver/+bug/1732485
+  patch:
+    src: HTTP-Body-XForms.patch
+    dest: /usr/share/perl5/HTTP/Body/XForms.pm
+    backup: yes
+  when: not dancer_is_patched

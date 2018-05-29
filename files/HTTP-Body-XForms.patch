@@ -1,0 +1,28 @@
+--- /usr/share/perl5/HTTP/Body/XForms.pm~	2015-01-28 22:51:53.000000000 -0500
++++ /usr/share/perl5/HTTP/Body/XForms.pm	2017-10-12 14:46:51.266399678 -0400
+@@ -37,10 +37,22 @@
+ 
+     return unless $self->length == $self->content_length;
+ 
+-    $self->body($self->{buffer});
++    unless ( $self->body ) {
++        $self->body( File::Temp->new( DIR => $self->tmpdir ) );
++    }
++
++    if ( my $length = length( $self->{buffer} ) ) {
++        $self->body->write( substr( $self->{buffer}, 0, $length, '' ), $length );
++    }
++
++    if ( $self->length == $self->content_length ) {
++        seek( $self->body, 0, 0 );
++        $self->state('done');
++    }
++    #$self->body($self->{buffer});
+     $self->param( 'XForms:Model', $self->{buffer} );
+-    $self->{buffer} = '';
+-    $self->{state}  = 'done';
++    #$self->{buffer} = '';
++    #$self->{state}  = 'done';
+ 
+     return $self->SUPER::init();
+ }
