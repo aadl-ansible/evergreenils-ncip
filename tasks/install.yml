@@ -1,7 +1,7 @@
 ---
 - name: Clone NCIPServer git repository
   git:
-    repo: 'git://git.evergreen-ils.org/NCIPServer.git'
+    repo: 'https://github.com/iNCIPit/iNCIPit.git'
     dest: "/home/{{ evergreen_install_username }}/NCIPServer"
     version: HEAD
   become: yes
