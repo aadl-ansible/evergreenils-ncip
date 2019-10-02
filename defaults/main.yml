@@ -1,4 +1,5 @@
 ---
 evergreen_install_username: opensrf
 
+evergreen_incipit_repo: 'https://github.com/iNCIPit/iNCIPit.git'
 evergreen_incipit_version: HEAD

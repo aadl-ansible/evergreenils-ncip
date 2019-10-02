@@ -1,8 +1,8 @@
 ---
 - name: Clone NCIPServer git repository
   git:
-    repo: 'https://github.com/iNCIPit/iNCIPit.git'
-    dest: "/home/{{ evergreen_install_username }}/NCIPServer"
+    repo: "{{ evergreen_incipit_repo }}"
+    dest: "/home/{{ evergreen_install_username }}/incipit"
     version: "{{ evergreen_incipit_version }}"
   become: yes
   become_user: "{{ evergreen_install_username }}"
