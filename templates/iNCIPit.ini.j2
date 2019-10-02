@@ -1,0 +1,47 @@
+[access]
+permit_plaintext    = {{ incipit_access_permit_plaintext }}
+load_balancer_ip    = {{ incipit_access_load_balancer_ip }}
+allowed_client_ips  = {{ incipit_access_allowed_client_ips }}
+
+[auth]
+username = {{ incipit_auth_username }}
+password = {{ incipit_auth_password }}
+
+[behavior]
+no_item_agency_holds = {{ incipit_behavior_no_item_agency_holds }}
+omit_patron_email    = {{ incipit_behavior_omit_patron_email }}
+# current patron_identifier options are:
+# barcode - patron barcode (default)
+# id - database id
+# future:
+# ident - patron ident field
+patron_identifier    = {{ incipit_behavior_patron_identifier }}
+
+[checkout]
+# This needs to be either a barcode or a patron id,
+# depending on the setting of patron_identifier
+institutional_patron = {{ incipit_checkout_institutional_patron }}
+
+[copy]
+circ_modifier = {{ incipit_copy_circ_modifier }}
+location      = {{ incipit_copy_circ_location }}
+circ_lib      = {{ incipit_copy_circ_lib }}
+
+[hold]
+requestor       = {{ incipit_hold_requestor }}
+init_pickup_lib = {{ incipit_hold_init_pickup_lib }}
+
+[path]
+oils_header  = /openils/bin/support-scripts/oils_header.pl
+opensrf_core = /openils/conf/opensrf_core.xml
+pickup_lib_map = pickup-libs
+userpriv_map = userpriv
+
+[status]
+loan_requested = {{ incipit_status_loan_requested }}
+hold           = {{ incipit_status_hold }}
+transit        = {{ incipit_status_transit }}
+transit_return = {{ incipit_status_transit_return }}
+
+[volume]
+owning_lib = {{ incipit_volume_owning_lib }}

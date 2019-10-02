@@ -1,5 +1,33 @@
 ---
-evergreen_install_username: opensrf
+opensrf_install_prefix: '/openils'
+opensrf_username: opensrf
 
-evergreen_incipit_repo: 'https://github.com/iNCIPit/iNCIPit.git'
-evergreen_incipit_version: HEAD
+incipit_repo: 'https://github.com/iNCIPit/iNCIPit.git'
+incipit_version: HEAD
+
+incipit_access_permit_plaintext: 'no'
+incipit_access_load_balancer_ip:
+incipit_access_allowed_client_ips: '127.0.0.1, 127.0.1.0'
+
+incipit_auth_username: ncip
+incipit_auth_password: 1234
+
+incipit_behavior_no_item_agency_holds: 'no'
+incipit_behavior_omit_patron_email: 'no'
+incipit_behavior_patron_identifier: barcode
+
+incipit_checkout_institutional_patron: 1234567890
+
+incipit_copy_circ_modifier: 099
+incipit_copy_circ_location: 500
+incipit_copy_circ_lib: 100
+
+incipit_hold_requestor: 10101010
+incipit_hold_init_pickup_lib: 100
+
+incipit_status_loan_requested: 101
+incipit_status_hold: 102
+incipit_status_transit: 103
+incipit_status_transit_return: 104
+
+incipit_volume_owning_lib: 100

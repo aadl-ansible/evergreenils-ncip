@@ -1,8 +1,27 @@
 ---
-- name: Clone NCIPServer git repository
+- name: Clone iNCIPit git repository
   git:
-    repo: "{{ evergreen_incipit_repo }}"
-    dest: "/home/{{ evergreen_install_username }}/incipit"
-    version: "{{ evergreen_incipit_version }}"
+    repo: "{{ incipit_repo }}"
+    dest: "/home/{{ opensrf_username }}/incipit"
+    version: "{{ incipit_version }}"
   become: yes
-  become_user: "{{ evergreen_install_username }}"
+  become_user: "{{ opensrf_username }}"
+- name: Copy CGI file
+  copy:
+    remote_src: yes
+    src: "/home/{{ opensrf_username }}/incipit/iNCIPit.cgi"
+    dest: "{{ opensrf_install_prefix }}/var/cgi-bin/iNCIPit.cgi"
+    owner: opensrf
+    group: opensrf
+    mode: u=rwx,g=rwx,o=rx
+  become: yes
+  become_user: "{{ opensrf_username }}"
+- name: Create Config file
+  template:
+    src: iNCIPit.ini.j2
+    dest: "{{ opensrf_install_prefix }}/var/cgi-bin/iNCIPit.ini"
+    owner: opensrf
+    group: opensrf
+    mode: u=rw,g=rw,o=r
+  become: yes
+  become_user: "{{ opensrf_username }}"
