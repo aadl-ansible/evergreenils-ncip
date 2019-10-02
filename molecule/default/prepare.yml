@@ -2,8 +2,27 @@
 - name: Prepare
   hosts: all
   gather_facts: false
+  become: true
+  vars_files:
+    - ../../defaults/main.yml
   tasks:
-    - name: Install python for Ansible
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-      become: true
-      changed_when: false
+    - name: Create install group
+      group:
+        name: "{{ evergreen_install_username }}"
+        gid: 3000
+        state: present
+    - name: Create install user
+      user:
+        name: "{{ evergreen_install_username }}"
+        group: "{{ evergreen_install_username }}"
+        shell: /bin/bash
+        uid: 3000
+        state: present
+    - name: create autogen directory
+      file:
+        path: '/openils/bin'
+        state: directory
+    - name: Pretend EVG is installed
+      file:
+        path: '/openils/bin/autogen.sh'
+        state: touch
