@@ -1,2 +1,4 @@
 ---
 evergreen_install_username: opensrf
+
+evergreen_incipit_version: HEAD

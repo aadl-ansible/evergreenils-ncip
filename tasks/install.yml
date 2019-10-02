@@ -3,6 +3,6 @@
   git:
     repo: 'https://github.com/iNCIPit/iNCIPit.git'
     dest: "/home/{{ evergreen_install_username }}/NCIPServer"
-    version: HEAD
+    version: "{{ evergreen_incipit_version }}"
   become: yes
   become_user: "{{ evergreen_install_username }}"
