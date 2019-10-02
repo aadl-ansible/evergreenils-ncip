@@ -7,32 +7,3 @@
   fail:
     msg: "Evergreen doesn't seem to be installed. NCIP needs to be on an Evergreen app server."
   when: not evergreen_autogen.stat.exists
-- name: Install perl prerequisites
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - libfile-slurp-perl
-    - libmodern-perl-perl
-    - libconfig-merge-perl
-    - libdancer-perl
-    - libobject-tiny-perl
-    - libxml-libxml-simple-perl
-    - libplack-perl
-  become: true
-
-- name: See if Dancer needs patched
-  lineinfile:
-    path: /usr/share/perl5/HTTP/Body/XForms.pm
-    line: "#$self->body($self->{buffer});"
-    state: present
-  check_mode: yes
-  register: dancer_is_patched
-
-- name: Patch Dancer per https://bugs.launchpad.net/ncipserver/+bug/1732485
-  patch:
-    src: HTTP-Body-XForms.patch
-    dest: /usr/share/perl5/HTTP/Body/XForms.pm
-    backup: yes
-  when: not dancer_is_patched
-  become: true
