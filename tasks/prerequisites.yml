@@ -7,3 +7,9 @@
   fail:
     msg: "Evergreen doesn't seem to be installed. NCIP needs to be on an Evergreen app server."
   when: not evergreen_autogen.stat.exists
+- name: Make sure Config::Tiny is installed for ini reading
+  apt:
+    name: libconfig-tiny-perl
+    state: present
+    cache_valid_time: 360
+  become: yes
