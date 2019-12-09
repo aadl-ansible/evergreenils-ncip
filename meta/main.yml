@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Ann Arbor District Library
   description: Evergreen ILS NCIP Installer
@@ -5,10 +6,10 @@ galaxy_info:
   min_ansible_version: 2.4
 
   platforms:
-  - name: Ubuntu
-    versions:
-    - xenial
-    - bionic
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
 
   galaxy_tags:
     - evergreenils
