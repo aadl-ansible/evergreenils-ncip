@@ -1,27 +1,27 @@
 ---
 - name: Clone iNCIPit git repository
-  git:
+  ansible.builtin.git:
     repo: "{{ incipit_repo }}"
-    dest: "/home/{{ opensrf_username }}/incipit"
+    dest: "/home/{{ opensrf_system_user }}/incipit"
     version: "{{ incipit_version }}"
   become: yes
-  become_user: "{{ opensrf_username }}"
+  become_user: "{{ opensrf_system_user }}"
 - name: Copy CGI file
-  copy:
+  ansible.builtin.copy:
     remote_src: yes
-    src: "/home/{{ opensrf_username }}/incipit/iNCIPit.cgi"
+    src: "/home/{{ opensrf_system_user }}/incipit/iNCIPit.cgi"
     dest: "{{ opensrf_install_prefix }}/var/cgi-bin/iNCIPit.cgi"
     owner: opensrf
     group: opensrf
     mode: u=rwx,g=rwx,o=rx
   become: yes
-  become_user: "{{ opensrf_username }}"
+  become_user: "{{ opensrf_system_user }}"
 - name: Create Config file
-  template:
+  ansible.builtin.template:
     src: iNCIPit.ini.j2
     dest: "{{ opensrf_install_prefix }}/var/cgi-bin/iNCIPit.ini"
     owner: opensrf
     group: opensrf
     mode: u=rw,g=rw,o=r
   become: yes
-  become_user: "{{ opensrf_username }}"
+  become_user: "{{ opensrf_system_user }}"

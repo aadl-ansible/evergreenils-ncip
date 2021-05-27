@@ -1,6 +1,6 @@
 ---
 opensrf_install_prefix: '/openils'
-opensrf_username: opensrf
+opensrf_system_user: opensrf
 
 incipit_repo: 'https://github.com/iNCIPit/iNCIPit.git'
 incipit_version: HEAD
