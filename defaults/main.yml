@@ -34,3 +34,8 @@ incipit_volume_owning_lib: 100
 
 incipit_pickup_libs:
   - 'zz999 Example System Example Branch 1:4'
+
+incipit_user_privs:
+  - 'Staff:Patrons'
+  - 'Catalogers:Patrons'
+  - 'Circulators:Patrons'

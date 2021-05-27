@@ -34,3 +34,12 @@
     mode: u=rw,g=rw,o=r
   become: yes
   become_user: "{{ opensrf_system_user }}"
+- name: Create User Privilege Config
+  ansible.builtin.template:
+    src: userpriv.j2
+    dest: "{{ opensrf_install_prefix }}/var/cgi-bin/userpriv"
+    owner: "{{ opensrf_system_user }}"
+    group: "{{ opensrf_system_user }}"
+    mode: u=rw,g=rw,o=r
+  become: yes
+  become_user: "{{ opensrf_system_user }}"
