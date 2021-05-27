@@ -11,8 +11,8 @@
     remote_src: yes
     src: "/home/{{ opensrf_system_user }}/incipit/iNCIPit.cgi"
     dest: "{{ opensrf_install_prefix }}/var/cgi-bin/iNCIPit.cgi"
-    owner: opensrf
-    group: opensrf
+    owner: "{{ opensrf_system_user }}"
+    group: "{{ opensrf_system_user }}"
     mode: u=rwx,g=rwx,o=rx
   become: yes
   become_user: "{{ opensrf_system_user }}"
@@ -20,8 +20,17 @@
   ansible.builtin.template:
     src: iNCIPit.ini.j2
     dest: "{{ opensrf_install_prefix }}/var/cgi-bin/iNCIPit.ini"
-    owner: opensrf
-    group: opensrf
+    owner: "{{ opensrf_system_user }}"
+    group: "{{ opensrf_system_user }}"
+    mode: u=rw,g=rw,o=r
+  become: yes
+  become_user: "{{ opensrf_system_user }}"
+- name: Create Pickup Libraries Config
+  ansible.builtin.template:
+    src: pickup-libs.j2
+    dest: "{{ opensrf_install_prefix }}/var/cgi-bin/pickup-libs"
+    owner: "{{ opensrf_system_user }}"
+    group: "{{ opensrf_system_user }}"
     mode: u=rw,g=rw,o=r
   become: yes
   become_user: "{{ opensrf_system_user }}"
